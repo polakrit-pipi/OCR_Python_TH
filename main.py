@@ -4,7 +4,7 @@ import streamlit as st
 from PIL import Image
 import pytesseract
 #metodos internos
-import functions.functions as fc
+
 
 class OCR:
 
@@ -38,38 +38,6 @@ class OCR:
         texto = pytesseract.image_to_string(img, lang="tha")
         return texto
     
-    def mostrar_analise(self):
-        #busca CPF, datas e palavras boas e mas na extracao
-        cpf = fc.buscar_cpf(self.texto)
-        datas = fc.buscar_data(self.texto)
-        p_boas, percentual_bom = fc.buscar_palavras_boas(self.texto)
-        p_mas, percentual_mau = fc.buscar_palavras_mas(self.texto)
-        
-        if cpf==None:
-            st.warning("Nenhum CPF encontrado.")
-        else:
-            cpf = fc.sumarizar_cpf(cpf)
-            st.success("CPF encontrado:")
-            st.write(cpf)
-
-        if datas==None:
-            st.warning("Nenhuma data encontrada.")
-        else:
-            datas = fc.sumarizar_datas(datas)
-            st.success("Datas encontradas:")
-            st.write(datas)
-        
-        if p_boas==0:
-            st.warning("Não identificado palavras de bem.")
-        else:
-            st.success("Palavras de bem:")
-            st.write("{} palavra(s). Representam das palavras do texto: {:.2f}%".format(p_boas, percentual_bom))
-        
-        if p_mas==0:
-            st.warning("Não identificado palavras más.")
-        else:
-            st.success("Palavras más:")
-            st.write("{} palavra(s). Representam das palavras do texto: {:.2f}%".format(p_mas, percentual_mau))
-
+   
 ocr = OCR()
 ocr.inicial()
