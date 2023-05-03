@@ -23,7 +23,7 @@ class OCR:
       
     
     def extract_img(self, img):
-        textto = pytesseract.image_to_string(img, lang="tha+eng")
+        textto = pytesseract.image_to_string(img, lang="tha")
         return textto
     
    
